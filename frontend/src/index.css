@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Nunito:wght@200;300;400;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Nunito:wght@200;300;400;600;700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&family=Roboto:wght@300;400;500&display=swap');
+
+.btn {
+    @apply  bg-primary px-4 py-2 rounded-lg border border-primary hover:bg-transparent hover:text-primary;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    scroll-behavior: smooth;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-link.active {
+    color: #3182CE; /* Active link color */
+}
+
+/* SCROLL BAR */
+#scrollbar-container::-webkit-scrollbar {
+    width: 10px;
+    height: 6px;
+}
+  
+  #scrollbar-container::-webkit-scrollbar-track {
+    background: transparent;
+    
+}
+  
+  #scrollbar-container::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+    
+}

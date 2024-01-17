@@ -1,0 +1,17 @@
+/* WebKit (Chrome, Safari, etc.) */
+  #create-chat::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  #create-chat::-webkit-scrollbar-track {
+    background: transparent;
+    
+  }
+  
+  #create-chat::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+    
+  }
+  

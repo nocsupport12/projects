@@ -1,0 +1,13 @@
+@media (max-width: 639px ) and (min-width: 401px) {
+    .__municipality-sub-heading{
+        font-size: 12px; 
+    }
+}
+
+@media (max-width: 400px ) and (min-width: 300px) {
+   
+    .__municipality-sub-heading{
+        font-size: 12px;  
+        
+    }
+}

@@ -1,0 +1,23 @@
+/* Add a running line to the "Home" link when hovered */
+.nav-link {
+    position: relative;
+    text-decoration: none;
+    display: inline-block; /* or display: block; */
+    max-width: 100%;
+  }
+  
+  .nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; 
+    background-color: #2D7AFE; 
+    transition: width 0.3s ease; 
+  }
+  
+  .nav-link:hover::before {
+    width: 100%;
+  }
+  

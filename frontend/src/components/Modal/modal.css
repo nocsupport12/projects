@@ -1,0 +1,16 @@
+/* WebKit (Chrome, Safari, etc.) */
+#modal::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  #modal::-webkit-scrollbar-track {
+    background: transparent;
+    
+  }
+  
+  #modal::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 10px;
+    
+  }
+  

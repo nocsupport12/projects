@@ -1,0 +1,14 @@
+{
+  "name": "bicolonecommunity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "cd backend && npm install  && cd ../socket && npm install && cd ../frontend && npm install",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm run dev",
+    "socket": "cd socket && npm run dev"
+  },
+  "author": "",
+  "license": "ISC"
+}

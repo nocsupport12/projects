@@ -1,0 +1,15 @@
+@media (max-width: 639px ) and (min-width: 401px) {
+    .__barangay-gubat{
+        padding: 28px 2px;
+    }  
+}
+@media (max-width: 400px ) and (min-width: 300px) {
+    .__barangay-gubat{
+        padding: 10px 5px;
+        
+    }
+    .__barangay-gubat-sub-heading{
+        font-size: 14px;
+        
+    }
+}

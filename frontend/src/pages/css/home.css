@@ -1,0 +1,114 @@
+/* hero section */
+#hero-section {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  height: 100vh;
+  animation: heroAnimation 20s infinite linear; /* Use a duration and iteration count that suits your needs */
+}
+
+#hero-section::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+height: 100vh;
+width: 100%;
+background: rgba(34, 34, 34, 0.6);
+opacity: 1;
+}
+
+#hero-section h2{
+  color: white;
+  z-index: 5;
+}
+#hero-section .sub-heading{
+  font-family: 'Dancing Script', cursive;
+  font-size: 4rem;
+  text-align: center;
+}
+#hero-section button{
+  color: white;
+  z-index: 5;
+}
+
+@keyframes heroAnimation {
+  
+  0% {
+    background-image: url("../../assets/home-img/conference.png");
+      
+  }
+  50% {
+    background-image: url("../../assets/home-img/hero-section3.jpg");
+  }
+  100% {
+    background-image: url("../../assets/home-img/hero-section2.jpg");
+}
+  
+ 
+}
+
+/* province section */
+
+#province {
+  background: url('../../assets/home-img/provinces.jpg') no-repeat center center/cover;
+  position: relative;
+  background-attachment: fixed;
+  height: 80vh;
+
+}
+#province:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all .2s linear;
+}
+
+
+#province h2,
+#province p {
+  color: azure;
+  z-index: 5;
+}
+
+#province #sub-text {
+  color: azure;
+  z-index: 5;
+}
+
+#donation {
+  background: url('../../assets/home-img/donation.png') no-repeat center center/cover;
+  position: relative;
+  background-attachment: fixed;
+  /* height: 70vh; */
+
+}
+#donation:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all .2s linear;
+}
+
+
+#donation h2,
+#donation p {
+  color: azure;
+  z-index: 5;
+}
+
+#donation #sub-text {
+  color: azure;
+  z-index: 5;
+}
