@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 // IMPORT COMPONENTS
 import { Profile } from "./Windows/Profile";
-import { Analytics } from "./Windows/Analytics";
 import { Employee } from "./Windows/Employee";
-import { Inventory } from "./Windows/Inventory";
-import { Sales } from "./Windows/Sales";
-import { Support } from "./Windows/Support";
-import { Clients } from "./Windows/Clients";
 import { Chats } from "./Windows/Chats";
 import { JobOrder } from "./Windows/JobOrder";
-import { FundRequest } from "./Windows/FundRequest";
 
 export const WindowDisplay = ({
   userDetails,
@@ -22,7 +16,7 @@ export const WindowDisplay = ({
   setIsLoaded,
   allClients,
   setAllClients,
-  search
+  search,
 }) => {
   //   DISPLAY TOGGLE
   useEffect(() => {
@@ -31,18 +25,6 @@ export const WindowDisplay = ({
         setDisplay(LoadingWindow);
         setTimeout(() => {
           setDisplay(<Profile userDetails={userDetails} />);
-        }, 1000);
-        break;
-      case "analytics":
-        setDisplay(LoadingWindow);
-        setTimeout(() => {
-          setDisplay(<Analytics userDetails={userDetails} />);
-        }, 1000);
-        break;
-      case "inventory":
-        setDisplay(LoadingWindow);
-        setTimeout(() => {
-          setDisplay(<Inventory userDetails={userDetails} />);
         }, 1000);
         break;
       case "employee":
@@ -54,30 +36,16 @@ export const WindowDisplay = ({
       case "sales":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<Sales userDetails={userDetails} />);
+          setDisplay(<JobOrder personnel="sales" userDetails={userDetails} />);
         }, 1000);
         break;
       case "support":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<Support userDetails={userDetails} />);
-        }, 1000);
-        break;
-      case "clients":
-        setDisplay(LoadingWindow);
-        setTimeout(() => {
           setDisplay(
-            <Clients
-              search={search}
-              allClients={allClients}
-              setAllClients={setAllClients}
-              userDetails={userDetails}
-              setDisplay={setDisplay}
-              LoadingWindow={LoadingWindow}
-            />
+            <JobOrder personnel="support" userDetails={userDetails} />
           );
         }, 1000);
-
         break;
       case "chats":
         setDisplay(LoadingWindow);
@@ -85,21 +53,41 @@ export const WindowDisplay = ({
           setDisplay(<Chats userDetails={userDetails} />);
         }, 1000);
         break;
-      case "joborder":
+      case "dispatch":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<JobOrder userDetails={userDetails} />);
+          setDisplay(
+            <JobOrder personnel="dispatch" userDetails={userDetails} />
+          );
         }, 1000);
         break;
-      case "fundrequest":
+      case "noc":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<FundRequest userDetails={userDetails} />);
+          setDisplay(<JobOrder personnel="noc" userDetails={userDetails} />);
         }, 1000);
         break;
-      case "loading":
+      case "accounting":
         setDisplay(LoadingWindow);
-
+        setTimeout(() => {
+          setDisplay(
+            <JobOrder personnel="accounting" userDetails={userDetails} />
+          );
+        }, 1000);
+        break;
+      case "osp":
+        setDisplay(LoadingWindow);
+        setTimeout(() => {
+          setDisplay(<JobOrder personnel="osp" userDetails={userDetails} />);
+        }, 1000);
+        break;
+      case "completed":
+        setDisplay(LoadingWindow);
+        setTimeout(() => {
+          setDisplay(
+            <JobOrder personnel="completed" userDetails={userDetails} />
+          );
+        }, 1000);
         break;
 
       default:

@@ -1,16 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaCheck, FaEdit, FaPlus } from "react-icons/fa";
 import { createUserDB, updateUserDB } from "../../../../Api/UserAccountsApi";
-import { Avatar, Box, Button, Checkbox, Flex, FormControl, FormLabel, Input, Select, Text, Textarea, Wrap, WrapItem, useToast, } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Button,
+  Checkbox,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Text,
+  Textarea,
+  Wrap,
+  WrapItem,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { uploadingImg } from "../../../../Api/UploadingApi";
 
-
 // import { uploadingImg } from "../../../../Api/UploadingApi";
-const storageUrl = process.env.REACT_APP_GLOBAL_STORAGEURL
+const storageUrl = process.env.REACT_APP_GLOBAL_STORAGEURL;
 
 export const EmployeeForm = ({
-
   userDetails,
   setUpdateEmployee,
   setCreateEmployee,
@@ -19,7 +32,6 @@ export const EmployeeForm = ({
   allUsers,
   setUserDetails,
   setIsEditMode,
-
 }) => {
   //   FORM STATES
   const [fullName, setFullName] = useState("");
@@ -40,14 +52,16 @@ export const EmployeeForm = ({
   const [type, setType] = useState("create");
   const [selectedFile, setSelectedFile] = useState(null);
   const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const fileInputRef = useRef(null);
   const toast = useToast();
 
-
   useEffect(() => {
     if (userDetails !== null) {
+      const privilege = userDetails?.privilegeaccess
+        ? userDetails?.privilegeaccess
+        : [];
       setType("update");
       setFullName(userDetails?.fullname ? userDetails?.fullname : "");
       setEmail(userDetails?.email ? userDetails?.email : "");
@@ -63,8 +77,8 @@ export const EmployeeForm = ({
       setAddress(userDetails?.address ? userDetails?.address : "");
       setDepartment(userDetails?.department ? userDetails?.department : "");
       setPassword(userDetails.password ? userDetails.password : "");
-      setSelectedPrivileges(userDetails?.privilegeaccess);
-      
+      setSelectedPrivileges(privilege);
+
       setRemarks(userDetails.remarks ? userDetails.remarks : "");
       console.log(userDetails?.privilegeaccess, selectedPrivileges);
     } else {
@@ -104,8 +118,7 @@ export const EmployeeForm = ({
 
   //   CREATE/UPDATE USERACCOUNTS DATABASE
   const EmployeeDB = async (filename) => {
-    
-    setLoading(true)
+    setLoading(true);
 
     const body = {
       fullname: fullName,
@@ -134,14 +147,9 @@ export const EmployeeForm = ({
           : await updateUserDB({ body: body, _id: userDetails._id });
 
       if (response) {
-        
-       
         // REALTIME UPDATE
         if (type === "update") {
-          
-          
           if (!isOwnProfile) {
-            
             // OTHER USER IN EMPLOYEE MANAGEMENT EDITING
             toast({
               title: "Update Successfully",
@@ -161,9 +169,8 @@ export const EmployeeForm = ({
             if (updatedUserIndex !== -1) {
               newAllUsers[updatedUserIndex] = response.data.newData;
               setAllUsers(newAllUsers);
-             
             }
-              setUpdateEmployee(null);
+            setUpdateEmployee(null);
           } else {
             toast({
               title: "Update Successfully",
@@ -174,8 +181,8 @@ export const EmployeeForm = ({
               zIndex: 9999, // Set the desired z-index value
             });
             // OWN USER PROFILE EDITING
-            setUserDetails(response.data.newData);   
-          
+            setUserDetails(response.data.newData);
+
             setIsEditMode(false);
           }
         } else {
@@ -190,9 +197,9 @@ export const EmployeeForm = ({
           });
           let newAllUsers = [...allUsers];
           setAllUsers([...newAllUsers, response.data.newUser]);
-            setCreateEmployee(false);
+          setCreateEmployee(false);
         }
-        
+
         //CLEARING
         setFullName("");
         setContact("");
@@ -213,17 +220,26 @@ export const EmployeeForm = ({
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
- 
 
   const handleValidate = () => {
-    
     const validate = () => {
-      
-      if (!fullName || !contact || !birthday || !employedDate || !office || !position || !email || !gender || !age || !address || !department ) {
-        // true 
+      if (
+        !fullName ||
+        !contact ||
+        !birthday ||
+        !employedDate ||
+        !office ||
+        !position ||
+        !email ||
+        !gender ||
+        !age ||
+        !address ||
+        !department
+      ) {
+        // true
         toast({
           title: "Filled Important Fields",
           status: "warning",
@@ -232,16 +248,13 @@ export const EmployeeForm = ({
           position: "top",
           zIndex: 9999, // Set the desired z-index value
         });
-    
       } else {
         return true;
       }
-      
-      
     };
-   
-    if (validate()) {            
-      handleUpload()
+
+    if (validate()) {
+      handleUpload();
     }
   };
 
@@ -253,19 +266,11 @@ export const EmployeeForm = ({
     setPassword(e.target.value);
   };
 
-
-
-
-
   const handleFileChange = (e) => {
     const selectedFiles = e.target.files[0];
     setImages([selectedFiles]);
     console.log(images);
   };
-
-
-
-
 
   const handleUpload = async () => {
     try {
@@ -275,10 +280,10 @@ export const EmployeeForm = ({
         data.append("file", images[0]);
         data.append("upload_preset", "uploadNews");
         const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
-  
+
         const res = await axios.post(api, data);
         const secure_url = res.data.secure_url;
-  
+
         // Update the database with the uploaded image URL
         EmployeeDB({ filename: secure_url });
       } else {
@@ -289,125 +294,124 @@ export const EmployeeForm = ({
       console.error("Upload failed:", error);
     }
   };
-  
+
   const handleButtonClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
   };
- 
+
   return (
-  <>    
-    <Flex flexDir="column"  gap={3} bg="gray.200" color="black" p={5} borderRadius={10} >
+    <>
+      <Flex
+        flexDir="column"
+        gap={3}
+        bg="gray.200"
+        color="black"
+        p={5}
+        borderRadius={10}
+      >
+        <Flex flexDir="column" gap={2} pb={10}>
+          <Flex>
+            <Box>
+              {images.length > 0 ? (
+                <Flex>
+                  <Wrap>
+                    <WrapItem>
+                      <Avatar size="xl" src={URL.createObjectURL(images[0])} />
+                    </WrapItem>
+                  </Wrap>
 
-      <Flex flexDir="column" gap={2} pb={10}>
-        <Flex>
-          <Box >
-          {images.length > 0 ? (
-            <Flex>
-              <Wrap>
-                <WrapItem>
-                  <Avatar
-                    size='xl'
-                  
-                    src={URL.createObjectURL(images[0])}
-                  />
-                </WrapItem>
-              </Wrap>
+                  <Flex flexDir="column" justify="end">
+                    <Input
+                      type="file"
+                      accept="*/*"
+                      id="actual-btn"
+                      onChange={handleFileChange}
+                      ref={fileInputRef}
+                    />
+                    <Button onClick={handleButtonClick} bg="none">
+                      <Box
+                        _hover={{
+                          color: "gray.600",
+                        }}
+                      >
+                        <FaEdit />
+                      </Box>
+                    </Button>
+                  </Flex>
+                </Flex>
+              ) : (
+                <Flex>
+                  <Wrap>
+                    <WrapItem>
+                      <Avatar
+                        size="xl"
+                        src={`${
+                          userDetails?.picture ? `${userDetails?.picture}` : ""
+                        }`}
+                        name={userDetails?.fullname}
+                      />
+                    </WrapItem>
+                  </Wrap>
+                  <Flex flexDir="column" justify="end">
+                    <Input
+                      type="file"
+                      accept="*/*"
+                      id="actual-btn"
+                      onChange={handleFileChange}
+                      ref={fileInputRef}
+                    />
+                    <Button onClick={handleButtonClick} bg="none">
+                      <Box
+                        _hover={{
+                          color: "gray.600",
+                        }}
+                      >
+                        <FaEdit />
+                      </Box>
+                    </Button>
+                  </Flex>
+                </Flex>
+              )}
 
-              <Flex flexDir="column" justify="end">
-              <Input
-                type="file"
-                accept="*/*"
-                id="actual-btn" 
-                onChange={handleFileChange}
-                ref={fileInputRef}
-              />
-              <Button 
-                onClick={handleButtonClick}
-                bg="none"
-              >
-                <Box
-                  _hover={{
-                    color:"gray.600"
-                }}>
-                  <FaEdit   />
-                </Box>
-              </Button>
-              </Flex>
-            </Flex>
-          ) : ( 
-            <Flex>
-              <Wrap>
-                <WrapItem >
-
-                  <Avatar size='xl'  src={`${userDetails?.picture ? `${userDetails?.picture}` : "" }`}  name={userDetails?.fullname}/>
-                </WrapItem>
-              </Wrap>
-              <Flex flexDir="column" justify="end">
-              <Input
-                type="file"
-                accept="*/*"
-                id="actual-btn" 
-                onChange={handleFileChange}
-                ref={fileInputRef}
-              />
-              <Button 
-                onClick={handleButtonClick}
-                bg="none"
-              >
-                <Box
-                  _hover={{
-                    color:"gray.600"
-                }}>
-                  <FaEdit   />
-                </Box>
-              </Button>
-              </Flex>
-            </Flex>
-           
-            )}
-
-            
-            <Text as="p" fontSize="xl">{userDetails?.fullname}</Text>
-          </Box>
-            
+              <Text as="p" fontSize="xl">
+                {userDetails?.fullname}
+              </Text>
+            </Box>
+          </Flex>
         </Flex>
-        
-        
-      </Flex>
-      
-        <Flex 
-          gap={2} flexDir={{base: "column", md: "row" ,lg: "row"}}>
+
+        <Flex gap={2} flexDir={{ base: "column", md: "row", lg: "row" }}>
           {/* FULL NAME */}
           <FormControl>
-            <FormLabel >Full Name:</FormLabel>
+            <FormLabel>Full Name:</FormLabel>
             <Input
               onChange={(e) => {
                 setFullName(e.target.value);
               }}
               value={fullName}
               type="text"
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
-          
+
           {/* EMAIL */}
-          <FormControl >
-            <FormLabel >E-mail:</FormLabel>
+          <FormControl>
+            <FormLabel>E-mail:</FormLabel>
             <Input
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
               value={email}
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
         </Flex>
 
-        <Flex gap={3} flexDir={{base: "column", md: "row", lg: "row"}}>
+        <Flex gap={3} flexDir={{ base: "column", md: "row", lg: "row" }}>
           {/* CONTANT NUMBER */}
           <FormControl className="col-span-6">
             <FormLabel>Contact Number:</FormLabel>
@@ -416,11 +420,11 @@ export const EmployeeForm = ({
                 setContact(e.target.value);
               }}
               value={contact}
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
-          
+
           {/* ADDRESS */}
           <FormControl className="col-span-6">
             <FormLabel>Address:</FormLabel>
@@ -429,25 +433,25 @@ export const EmployeeForm = ({
                 setAddress(e.target.value);
               }}
               value={address}
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
         </Flex>
-        
-        <Flex gap={3} flexDir={{base: "column", md: "row", lg: "row"}}>
+
+        <Flex gap={3} flexDir={{ base: "column", md: "row", lg: "row" }}>
           {/* BIRTHDAY */}
           <FormControl className="col-span-6">
-            <FormLabel >Birthday:</FormLabel>
+            <FormLabel>Birthday:</FormLabel>
             <Input
               type="date"
               onChange={handleBirthdayChange}
               value={birthday}
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
-          
+
           {/* AGE */}
           <FormControl className="col-span-6">
             <FormLabel>Age:</FormLabel>
@@ -457,36 +461,43 @@ export const EmployeeForm = ({
               }}
               value={age}
               readOnly
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
 
           {/* GENDER */}
           <FormControl className="col-span-6">
-            <FormLabel fontSize="md" fontWeight="bold" >Gender:</FormLabel>
+            <FormLabel fontSize="md" fontWeight="bold">
+              Gender:
+            </FormLabel>
             <Select
               onChange={(e) => setGender(e.target.value)}
               value={gender}
               borderColor="blue.300"
               borderRadius="md"
               focusBorderColor="blue.300"
-              _hover={{ borderColor: 'blue.500' }}
-            
-              
+              _hover={{ borderColor: "blue.500" }}
+
               // placeholder="Please Select"
             >
               <option value="" disabled>
                 Please Select
               </option>
-              <option color="black" value="male">Male</option>
-              <option color="black" value="female">Female</option>
-              <option color="black" value="other">Other</option>
+              <option color="black" value="male">
+                Male
+              </option>
+              <option color="black" value="female">
+                Female
+              </option>
+              <option color="black" value="other">
+                Other
+              </option>
             </Select>
           </FormControl>
         </Flex>
 
-        <Flex gap={3} flexDir={{base: "column", md: "row", lg: "row"}}>
+        <Flex gap={3} flexDir={{ base: "column", md: "row", lg: "row" }}>
           {/* EMPLOYEE DATE */}
           <FormControl className="col-span-6">
             <FormLabel>Employed Date:</FormLabel>
@@ -494,15 +505,14 @@ export const EmployeeForm = ({
               type="date"
               onChange={(e) => {
                 setEmployedDate(e.target.value);
-                
               }}
               value={employedDate}
               borderRadius="md"
-              borderColor='blue.300'
-              _hover={{ borderColor: 'blue.500' }}
+              borderColor="blue.300"
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
-        
+
           {/* OFFICE */}
           <FormControl className="col-span-6">
             <FormLabel>Office:</FormLabel>
@@ -513,14 +523,14 @@ export const EmployeeForm = ({
               value={office}
               borderColor="blue.300"
               borderRadius="md"
-              _hover={{ borderColor: 'blue.500' }}
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
         </Flex>
 
-        <Flex gap={3} flexDir={{base: "column", md: "row", lg: "row"}}>
+        <Flex gap={3} flexDir={{ base: "column", md: "row", lg: "row" }}>
           {/* DEPARTMENT */}
-          <FormControl className="col-span-6" w={{base: "100%" , lg:"33%"}}>
+          <FormControl className="col-span-6" w={{ base: "100%", lg: "33%" }}>
             <FormLabel>Department:</FormLabel>
             <Input
               onChange={(e) => {
@@ -529,12 +539,12 @@ export const EmployeeForm = ({
               value={department}
               borderColor="blue.300"
               borderRadius="md"
-              _hover={{ borderColor: 'blue.500' }}
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
 
           {/* POSITION */}
-          <FormControl className="col-span-6" w={{base: "100%" , lg:"33%"}}>
+          <FormControl className="col-span-6" w={{ base: "100%", lg: "33%" }}>
             <FormLabel>Position:</FormLabel>
             <Input
               onChange={(e) => {
@@ -543,19 +553,21 @@ export const EmployeeForm = ({
               value={position}
               borderColor="blue.300"
               borderRadius="md"
-              _hover={{ borderColor: 'blue.500' }}
+              _hover={{ borderColor: "blue.500" }}
             />
           </FormControl>
-          <Flex  w={{base: "100%" , lg:"33%"}} flexDir="column">
-            <Flex  pb={2}>Give / Change Password:<Checkbox
-              isChecked={showPassword}
-              onChange={handleCheckboxChange}
-              borderColor="blue.300"
-              borderRadius="md"
-              pl={2}
-              
-            /></Flex>
-            
+          <Flex w={{ base: "100%", lg: "33%" }} flexDir="column">
+            <Flex pb={2}>
+              Give / Change Password:
+              <Checkbox
+                isChecked={showPassword}
+                onChange={handleCheckboxChange}
+                borderColor="blue.300"
+                borderRadius="md"
+                pl={2}
+              />
+            </Flex>
+
             {showPassword && (
               <Box>
                 <Input
@@ -564,112 +576,148 @@ export const EmployeeForm = ({
                   placeholder="Enter password"
                   borderColor="blue.300"
                   borderRadius="md"
-                  _hover={{ borderColor: 'blue.500' }}
+                  _hover={{ borderColor: "blue.500" }}
                 />
               </Box>
             )}
           </Flex>
-        </Flex>  
-        
-        {!isOwnProfile && ( 
+        </Flex>
 
+        {!isOwnProfile && (
           <Flex flexDir="column" as="div">
-            <FormLabel>
-              Privilege:
-            </FormLabel>
+            <FormLabel>Privilege:</FormLabel>
 
-            <Flex flexDir={{base: "column", lg: "row"}}>
-                <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                  <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                    <Checkbox
-                      value="analytics"
-                      checked={selectedPrivileges?.includes("analytics")}
-                      onChange={handlePrivilegeChange}
-                      borderColor="blue.300"
-                    
-                    />
-                    <Text as="p" ml={2}>
-                      Business Dashboard
-                    </Text>
-                  </Flex>
-                </Box>
-
-                <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                  <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                    <Checkbox
-                      value="customerService"
-                      checked={selectedPrivileges?.includes("customerService")}
-                      onChange={handlePrivilegeChange}
-                      borderColor="blue.300"
-                    />
-                    <Text as="p" ml={2}>
-                      Customer Service Reports
-                    </Text>
-                  
-                </Flex>
-              </Box>
-            </Flex>
-
-            <Flex flexDir={{base: "column", lg: "row"}}>
-              <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                  <Checkbox
-                    value="inventory"
-                    checked={selectedPrivileges?.includes("inventory")}
+            <Flex flexDir={{ base: "column", lg: "row" }}>
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="administrator"
+                    checked={selectedPrivileges?.includes("administrator")}
                     onChange={handlePrivilegeChange}
-                    borderColor="blue.300"
                   />
                   <Text as="p" ml={2}>
-                    Inventory Management
+                    Administrator
                   </Text>
                 </Flex>
-              </Box>  
-              
-              <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                  <Checkbox
-                    value="employee"
-                    checked={selectedPrivileges?.includes("employee")}
+              </Box>
+
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="chats"
+                    checked={selectedPrivileges?.includes("chats")}
                     onChange={handlePrivilegeChange}
-                    borderColor="blue.300"
                   />
                   <Text as="p" ml={2}>
-                    Employee Management
+                    Chats Management
                   </Text>
                 </Flex>
               </Box>
             </Flex>
 
-            <Flex flexDir={{base: "column", lg: "row"}}>
-              <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                  <Checkbox
-                    value="clients"
-                    checked={selectedPrivileges?.includes("clients")}
+            <Flex flexDir={{ base: "column", lg: "row" }}>
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="customerservice"
+                    checked={selectedPrivileges?.includes("customerservice")}
                     onChange={handlePrivilegeChange}
-                    borderColor="blue.300"
                   />
                   <Text as="p" ml={2}>
-                    Clients
-
+                    Customer Support
                   </Text>
                 </Flex>
               </Box>
 
-              <Box as="div" w={{base: "100%" ,lg:"50%"}}>
-                <Flex w={{base: "100%" ,lg:"40%"}} align="center">
-                  <Checkbox
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
                     value="sales"
                     checked={selectedPrivileges?.includes("sales")}
                     onChange={handlePrivilegeChange}
-                    borderColor="blue.300"
                   />
                   <Text as="p" ml={2}>
-                    Sales
+                    Sales Marketing
                   </Text>
                 </Flex>
               </Box>
             </Flex>
+
+            <Flex flexDir={{ base: "column", lg: "row" }}>
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="dispatch"
+                    checked={selectedPrivileges?.includes("dispatch")}
+                    onChange={handlePrivilegeChange}
+                  />
+                  <Text as="p" ml={2}>
+                    Dispatch
+                  </Text>
+                </Flex>
+              </Box>
+
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="noc"
+                    checked={selectedPrivileges?.includes("noc")}
+                    onChange={handlePrivilegeChange}
+                  />
+                  <Text as="p" ml={2}>
+                    NOC Department
+                  </Text>
+                </Flex>
+              </Box>
+            </Flex>
+            <Flex flexDir={{ base: "column", lg: "row" }}>
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="billing"
+                    checked={selectedPrivileges?.includes("billing")}
+                    onChange={handlePrivilegeChange}
+                  />
+                  <Text as="p" ml={2}>
+                    Billing / Accounting
+                  </Text>
+                </Flex>
+              </Box>
+              <Box as="div" w={{ base: "100%", lg: "50%" }}>
+                <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                  <input
+                    type="checkbox"
+                    value="osp"
+                    checked={selectedPrivileges?.includes("osp")}
+                    onChange={handlePrivilegeChange}
+                  />
+                  <Text as="p" ml={2}>
+                    OSP / Engineering
+                  </Text>
+                </Flex>
+              </Box>
+            </Flex>
+
+            <Box as="div" w={{ base: "100%", lg: "50%" }}>
+              <Flex w={{ base: "100%", lg: "40%" }} align="center">
+                <input
+                  type="checkbox"
+                  value="completed"
+                  checked={selectedPrivileges?.includes("completed")}
+                  onChange={handlePrivilegeChange}
+                />
+                <Text as="p" ml={2}>
+                  Completed Job Orders
+                </Text>
+              </Flex>
+            </Box>
             <Box>
               <FormLabel htmlFor="remarks" fontWeight="bold" mb={2}>
                 Remarks:
@@ -687,45 +735,37 @@ export const EmployeeForm = ({
               />
             </Box>
           </Flex>
-        )} 
-    
-        <Flex flexDir="column" w="100%">
+        )}
+
+        <Flex flexDir="column" w="100%"></Flex>
+
+        {/* BUTTON */}
+        <Flex justifyContent="flex-end" alignItems="flex-end">
+          <Button
+            colorScheme="lime"
+            size="md"
+            fontWeight="semibold"
+            px={6}
+            py={3}
+            borderRadius="md"
+            borderWidth={2}
+            borderColor="blue.600"
+            transition="all 0.3s"
+            color="black"
+            isLoading={loading}
+            onClick={handleValidate}
+            _hover={{
+              borderColor: "blue.300",
+              boxShadow: "xl",
+            }}
+          >
+            <Flex align="center" gap={2}>
+              {type === "create" ? "Generate" : "Update"}{" "}
+              {!isOwnProfile ? "Employee" : "Profile"} <FaCheck />
+            </Flex>
+          </Button>
+        </Flex>
       </Flex>
-      
-      {/* BUTTON */}
-      <Flex justifyContent="flex-end" alignItems="flex-end">
-        <Button
-          colorScheme="lime"
-          size="md"
-          fontWeight="semibold"
-          px={6}
-          py={3}
-          borderRadius="md"
-          borderWidth={2}
-          borderColor="blue.600"
-          transition="all 0.3s"
-          color="black"
-          isLoading={loading}
-          onClick={handleValidate}
-          _hover={{
-          
-            
-            borderColor: 'blue.300',
-            boxShadow: 'xl',
-          }}
-        >
-          <Flex align="center" gap={2}>
-          
-            {type === "create" ? "Generate" : "Update"}{" "}
-            {!isOwnProfile ? "Employee" : "Profile"}{" "}
-            <FaCheck />
-          </Flex>
-        </Button>
-        
-      </Flex>
-    </Flex> 
-      
-  </>
+    </>
   );
 };
-

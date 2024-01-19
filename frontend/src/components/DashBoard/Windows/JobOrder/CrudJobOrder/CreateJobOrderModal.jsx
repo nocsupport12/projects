@@ -13,7 +13,7 @@ export const CreateJobOrderModal = ({
       className="inset-0 fixed backdrop-blur-xl flex justify-center items-center overflow-auto text-gray-800"
       style={{ zIndex: 10000000 }}
     >
-      <div className="bg-gray-200 shadow-2xl min-w-[800px] min-h-[700px] w-[85vw] h-[70vh] rounded-2xl overflow-auto flex flex-col items-center  py-1">
+      <div className="inset-0 fixed bg-gray-200 shadow-2xl  rounded-2xl overflow-auto flex flex-col items-center  py-1">
         {/* CLOSE BUTTON */}
         <div className="flex justify-end pr-3 h-[5%] w-full">
           <IoMdClose
@@ -33,9 +33,6 @@ export const CreateJobOrderModal = ({
               allJobOrders={allJobOrders}
               setAllJobOrders={setAllJobOrders}
               updateJobOrder={updateJobOrder}
-              jobTypeProps={"Field"}
-              // setAllUsers={setAllUsers}
-              // allUsers={allUsers}
             />
           </div>
         </div>

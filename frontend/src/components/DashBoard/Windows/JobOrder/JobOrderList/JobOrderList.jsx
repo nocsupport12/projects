@@ -9,6 +9,7 @@ export const JobOrderList = ({
   setJobOrderView,
   setUpdateJobOrder,
   setDeleteJobOrder,
+  personnel,
 }) => {
   const [windowTab, setWindowTab] = useState("Clients");
   const [rows, setRows] = useState([]);
@@ -16,60 +17,6 @@ export const JobOrderList = ({
   return (
     <>
       <div className="w-full overflow-x-auto min-w-[850px]">
-        {/* List of Employees */}
-        {/* window tabs */}
-        <Flex>
-          <Box
-            px={5}
-            py={3}
-            borderRadius={10}
-            _hover={{
-              cursor: "pointer",
-              backgroundColor: "blue.500",
-              fontWeight: "semibold",
-            }}
-            backgroundColor={windowTab === "Clients" ? "blue.500" : ""}
-            fontWeight={windowTab === "Clients" ? "semibold" : ""}
-            onClick={() => {
-              setWindowTab("Clients");
-              setRows([
-                "reportId",
-                "type",
-                "clientName",
-                "description",
-                "date",
-                "actions",
-              ]);
-            }}
-          >
-            <Text>Clients</Text>
-          </Box>
-          <Box
-            px={5}
-            py={3}
-            borderRadius={10}
-            _hover={{
-              cursor: "pointer",
-              backgroundColor: "blue.500",
-              fontWeight: "semibold",
-            }}
-            onClick={() => {
-              setWindowTab("Field");
-              setRows([
-                "reportId",
-                "type",
-                "area",
-                "description",
-                "date",
-                "actions",
-              ]);
-            }}
-            backgroundColor={windowTab === "Field" ? "blue.500" : ""}
-            fontWeight={windowTab === "Field" ? "semibold" : ""}
-          >
-            <Text>Field</Text>
-          </Box>
-        </Flex>
         <Grid
           gridTemplateColumns="repeat(12, 1fr)"
           gap={2}
@@ -79,7 +26,6 @@ export const JobOrderList = ({
           rounded="lg"
           bg="green.800"
           flexWrap="nowrap"
-          // className="grid grid-cols-12 gap-2 py-2 px-2 mb-2 bg-green-800 rounded-lg "
           style={{ flexWrap: "nowrap" }}
         >
           <GridItem colSpan={2}>
@@ -121,14 +67,10 @@ export const JobOrderList = ({
           </GridItem>
         </Grid>
 
-        <ul className="w-full max-h-[700px] min-h-[530px] flex flex-col gap-1 ">
+        <ul className="w-full h-[550px] overflow-y-auto flex flex-col gap-1 ">
           {allJobOrders
-            .filter((el) => {
-              if (el?.jobordertype) {
-                return el?.jobordertype === windowTab;
-              }
-            })
-            ?.map((jobOrder, index) => (
+            ?.filter((el) => personnel === el.receiver)
+            .map((jobOrder, index) => (
               <JobOrderListDetails
                 jobOrder={jobOrder}
                 key={index}
