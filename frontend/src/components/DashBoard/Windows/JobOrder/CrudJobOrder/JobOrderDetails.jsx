@@ -20,13 +20,14 @@ export const JobOrderDetails = ({ jobOrderView }) => {
         flexDir="column"
         className="font-poppins"
         py={10}
+        px={5}
         my={5}
         border="1px solid #E2E8F0"
         borderRadius={5}
-        px={5}
+      
       >
         {" "}
-        <Flex w="50%" align="center" gap={2} fontSize="17px">
+        <Flex ml="10px" pb={{base: "10"}} w={{base: "100%", sm: "100%", md: "40%", lg:"32%"}} align="center" gap={2} fontSize="17px">
           <Text as="p" color="blue.300" align="center" fontWeight="semibold">
             Job Order Nature:
           </Text>
@@ -34,8 +35,8 @@ export const JobOrderDetails = ({ jobOrderView }) => {
         </Flex>
         {jobOrderView?.naturejoborder === "application" && (
           <>
-            <Flex py={4}>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+          <Flex flexWrap="wrap">
+              <Flex  py={{base: "2",lg: "4"}} w={{base: "100%", md:"49%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -45,10 +46,11 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                   Client Name:
                 </Text>
                 {jobOrderView?.fullname}
+
+                
               </Flex>
-            </Flex>
-            <Flex py={4}>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+
+              <Flex  py={{base: "2",lg: "4"}} w={{base: "100%", md:"49%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -59,10 +61,13 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 </Text>
                 {jobOrderView?.email}
               </Flex>
-            </Flex>
+          </Flex>
+          
+          <Flex justify="space-between" flexWrap="wrap">
+          
 
-            <Flex py={4}>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+              {/* CONTACT */}
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -73,7 +78,8 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 </Text>
                 {jobOrderView?.contactnumber}
               </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -84,7 +90,8 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 </Text>
                 {jobOrderView?.area}
               </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -95,7 +102,8 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 </Text>
                 {jobOrderView?.monthlyplan}
               </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} align="center" gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -107,7 +115,7 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 {jobOrderView?.address}
               </Flex>
 
-              <Flex w="50%" gap={2} fontSize="17px">
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
                 <Text
                   as="p"
                   color="blue.300"
@@ -118,217 +126,236 @@ export const JobOrderDetails = ({ jobOrderView }) => {
                 </Text>
                 {jobOrderView?.type.toUpperCase()}
               </Flex>
-            </Flex>
+              
 
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Network Type:
-              </Text>
-              {jobOrderView?.networktype}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                MicroBiz Plan:
-              </Text>
-              {jobOrderView?.microbizplan}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Status:
-              </Text>
-              {jobOrderView?.status}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                MBPS:
-              </Text>
-              {jobOrderView?.mbps}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Agent:
-              </Text>
-              {jobOrderView?.agent}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Mode of Payment:
-              </Text>
-              {jobOrderView?.modeofpayment}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Reference Number:
-              </Text>
-              {jobOrderView?.referencenumber}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Remit Date:
-              </Text>
-              {jobOrderView?.remitdate}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Over the Counter:
-              </Text>
-              {jobOrderView?.otc}
-            </Flex>
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Type:
-              </Text>
-              {jobOrderView?.type}
-            </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Network Type:
+                </Text>
+                {jobOrderView?.networktype}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  MicroBiz Plan:
+                </Text>
+                {jobOrderView?.microbizplan}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Status:
+                </Text>
+                {jobOrderView?.status}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  MBPS:
+                </Text>
+                {jobOrderView?.mbps}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Agent:
+                </Text>
+                {jobOrderView?.agent}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  MOD:
+                </Text>
+                {jobOrderView?.modeofpayment}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Reference No:
+                </Text>
+                {jobOrderView?.referencenumber}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Remit Date:
+                </Text>
+                {jobOrderView?.remitdate}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Over the Counter:
+                </Text>
+                {jobOrderView?.otc}
+              </Flex>
+
+              <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg:"32%"}} gap={2} fontSize="17px">
+                <Text
+                  as="p"
+                  color="blue.300"
+                  align="center"
+                  fontWeight="semibold"
+                >
+                  Type:
+                </Text>
+                {jobOrderView?.type}
+              </Flex>
+          </Flex>
           </>
         )}
+
         {jobOrderView?.naturejoborder === "clienttrouble" && (
           <>
-            <Flex py={4}>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
-                <Text
+            <Flex py={4} flexWrap="wrap">
+                {/* ACCOUNT NUMBER */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} align="center" gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    Account Number:
+                  </Text>
+                  {jobOrderView?.accountnumber}
+                </Flex>
+                {/* CSR REPORT NUMBER */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} align="center" gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    CSR Report Number:
+                  </Text>
+                  {jobOrderView?.csrreportnumber}
+                </Flex>
+                {/* CLIENT NAME */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} align="center" gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    Client Name:
+                  </Text>
+                  {jobOrderView?.fullname}
+                </Flex>
+                {/* CONTACT */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} align="center" gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    Contact:
+                  </Text>
+                  {jobOrderView?.contactnumber}
+                </Flex>
+                {/* ADDRESS */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} align="center" gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    Address:
+                  </Text>
+                  {jobOrderView?.address}
+                </Flex>
+                {/* TYPE */}
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} gap={2} fontSize="17px">
+                  <Text
+                    as="p"
+                    color="blue.300"
+                    align="center"
+                    fontWeight="semibold"
+                  >
+                    Type:
+                  </Text>
+                  {jobOrderView?.type.toUpperCase()}
+                </Flex>
+                <Flex py={{base: "2",lg: "4"}} w={{base: "100%", sm: "100%", md: "49%", lg: "32%"}} gap={2} fontSize="17px">
+                  <Text
                   as="p"
                   color="blue.300"
                   align="center"
                   fontWeight="semibold"
                 >
-                  Account Number:
-                </Text>
-                {jobOrderView?.accountnumber}
-              </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
-                <Text
-                  as="p"
-                  color="blue.300"
-                  align="center"
-                  fontWeight="semibold"
-                >
-                  CSR Report Number:
-                </Text>
-                {jobOrderView?.csrreportnumber}
-              </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
-                <Text
-                  as="p"
-                  color="blue.300"
-                  align="center"
-                  fontWeight="semibold"
-                >
-                  Client Name:
-                </Text>
-                {jobOrderView?.fullname}
-              </Flex>
+                  Network Type:
+                  </Text>
+                {jobOrderView?.networktype}
+                </Flex>
             </Flex>
 
-            <Flex py={4}>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
-                <Text
-                  as="p"
-                  color="blue.300"
-                  align="center"
-                  fontWeight="semibold"
-                >
-                  Contact:
-                </Text>
-                {jobOrderView?.contactnumber}
-              </Flex>
-              <Flex w="50%" align="center" gap={2} fontSize="17px">
-                <Text
-                  as="p"
-                  color="blue.300"
-                  align="center"
-                  fontWeight="semibold"
-                >
-                  Address:
-                </Text>
-                {jobOrderView?.address}
-              </Flex>
-
-              <Flex w="50%" gap={2} fontSize="17px">
-                <Text
-                  as="p"
-                  color="blue.300"
-                  align="center"
-                  fontWeight="semibold"
-                >
-                  Type:
-                </Text>
-                {jobOrderView?.type.toUpperCase()}
-              </Flex>
-            </Flex>
-
-            <Flex w="33.3%" gap={2} fontSize="17px">
-              <Text
-                as="p"
-                color="blue.300"
-                align="center"
-                fontWeight="semibold"
-              >
-                Network Type:
-              </Text>
-              {jobOrderView?.networktype}
-            </Flex>
+            {/* NETWORK TYPE */}
+            
           </>
         )}
         <Flex py={4}>
-          <Flex w="33.3%" gap={2} fontSize="17px">
+
+          {/* OVERVIEW DESCRIPTION */}
+          <Flex w={{base:"100%"}} gap={2} fontSize="17px">
             <Text as="p" color="blue.300" align="center" fontWeight="semibold">
               Overview Description:
             </Text>
             {jobOrderView?.description}
           </Flex>
         </Flex>
-        <Flex flexDir="column" w="33.3%">
+        {/* MATERIALS NEEDED */}
+        <Flex flexDir="column" w={{base:"100%"}}>
           <Text fontSize="17px" color="blue.300" fontWeight="semibold">
             Materials Needed:
           </Text>
@@ -338,8 +365,9 @@ export const JobOrderDetails = ({ jobOrderView }) => {
             })}
           </ul>
         </Flex>
-        <Flex py={4}>
-          <Flex pt={3} w="50%" flexDir="column" gap={2}>
+
+        <Flex py={4} flexWrap="wrap">
+          <Flex pt={3} w={{base:"100%", sm:"100%", md:"32%", lg:"32%"}} flexDir="column" gap={2}>
             <Text fontSize="17px" color="blue.300" fontWeight="bold">
               CSR:
             </Text>
@@ -360,7 +388,7 @@ export const JobOrderDetails = ({ jobOrderView }) => {
             </Text>
           </Flex>
 
-          <Flex w="50%" flexDir="column" gap={2}>
+          <Flex w={{base:"100%", sm:"100%", md:"32%", lg:"32%"}} flexDir="column" gap={2}>
             <Text pt={3} fontSize="17px" color="blue.300" fontWeight="bold">
               NOC:
             </Text>
@@ -378,7 +406,7 @@ export const JobOrderDetails = ({ jobOrderView }) => {
             </Text>
           </Flex>
 
-          <Flex w="50%" flexDir="column" gap={2}>
+          <Flex w={{base:"100%", sm:"100%", md:"32%", lg:"32%"}} flexDir="column" gap={2}>
             <Text pt={3} fontSize="17px" color="blue.300" fontWeight="bold">
               Billing:
             </Text>
@@ -396,7 +424,9 @@ export const JobOrderDetails = ({ jobOrderView }) => {
             </Text>
           </Flex>
         </Flex>
-        <Flex pt={3} w="50%" flexDir="column" gap={2}>
+
+        <Flex pb={5} flexWrap="wrap">
+          <Flex  pt={3} w={{base:"100%", sm:"100%", md:"32%", lg:"32%"}} flexDir="column" gap={2}>
           <Text fontSize="17px" color="blue.300" fontWeight="bold">
             Dispatch:
           </Text>
@@ -415,8 +445,9 @@ export const JobOrderDetails = ({ jobOrderView }) => {
           <Text fontSize="14px" color="blue.300" fontWeight="semibold" pl={3}>
             Remarks: {jobOrderView.dispatch?.remarks}
           </Text>
-        </Flex>
-        <Flex w="50%" pt={3} flexDir="column" gap={2}>
+          </Flex>
+
+          <Flex w={{base:"100%", sm:"100%", md:"32%", lg:"32%"}} pt={3} flexDir="column" gap={2}>
           <Text fontSize="17px" color="blue.300" fontWeight="bold">
             Action:
           </Text>
@@ -433,6 +464,8 @@ export const JobOrderDetails = ({ jobOrderView }) => {
             Remarks: {jobOrderView.action?.remarks}
           </Text>
         </Flex>
+        </Flex>
+        
         {jobOrderView.naturejoborder === "application" && (
           <>
             <h2 className="text-xl text-center">NOC Activation</h2>

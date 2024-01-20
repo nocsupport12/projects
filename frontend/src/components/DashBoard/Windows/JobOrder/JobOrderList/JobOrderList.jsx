@@ -26,31 +26,20 @@ export const JobOrderList = ({
           rounded="lg"
           bg="green.800"
           flexWrap="nowrap"
-          style={{ flexWrap: "nowrap" }}
+          
         >
           <GridItem colSpan={2}>
             <Text as="p" fontWeight="bold">
               Report ID
             </Text>
           </GridItem>
+          
           <GridItem colSpan={2}>
-            <Text as="p" fontWeight="bold">
-              Type
-            </Text>
-          </GridItem>
-          <GridItem colSpan={3}>
-            {windowTab === "Clients" && (
               <Text as="p" fontWeight="bold">
-                Client Name
+                Nature
               </Text>
-            )}
-            {windowTab === "Field" && (
-              <Text as="p" fontWeight="bold">
-                Address
-              </Text>
-            )}
           </GridItem>
-          <GridItem colSpan={2}>
+          <GridItem colSpan={5}>
             <Text as="p" fontWeight="bold">
               Description
             </Text>

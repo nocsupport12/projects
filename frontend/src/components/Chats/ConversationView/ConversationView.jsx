@@ -47,7 +47,10 @@ export const ConversationView = ({
   
 }) => {
   const globalUrl = process.env.REACT_APP_GLOBAL_URL;
-  const cloudinaryUrl = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+
+  const cloudeName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
+
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   // const globalUrl = "http://localhost:8000"
@@ -280,8 +283,8 @@ export const ConversationView = ({
     try {
       const data = new FormData();
       data.append("file", file);
-      data.append("upload_preset", "barangay_ariman_image");
-      const api = `https://api.cloudinary.com/v1_1/${cloudinaryUrl}/image/upload`;
+      data.append("upload_preset", "uploadMedia");
+      const api = `https://api.cloudinary.com/v1_1/${cloudeName}/image/upload`;
 
       const res = await axios.post(api, data);
       const secure_url = res.data.secure_url;
@@ -304,8 +307,8 @@ export const ConversationView = ({
 
       const data = new FormData();
       data.append("file", file);
-      data.append("upload_preset", "barangay_ariman_video");
-      const api = `https://api.cloudinary.com/v1_1/${cloudinaryUrl}/video/upload`;
+      data.append("upload_preset", "uploadMedia");
+      const api = `https://api.cloudinary.com/v1_1/${cloudeName}/video/upload`;
 
       const res = await axios.post(api, data);
       const secure_url = res.data.secure_url;
@@ -331,8 +334,8 @@ export const ConversationView = ({
 
       const data = new FormData();
       data.append("file", file);
-      data.append("upload_preset", "documents"); // Replace with your Cloudinary upload preset
-      const api = `https://api.cloudinary.com/v1_1/${cloudinaryUrl}/upload`;
+      data.append("upload_preset", "uploadMedia"); // Replace with your Cloudinary upload preset
+      const api = `https://api.cloudinary.com/v1_1/${cloudeName}/upload`;
 
       const res = await axios.post(api, data);
       const secure_url = res.data.secure_url;

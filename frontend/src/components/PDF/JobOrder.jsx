@@ -81,7 +81,8 @@ export const MyDocument = ({ jobOrderView }) => (
                   : ""}
               </Text>
               <Text style={styles.jobOrderInfo}>
-                DATE : {jobOrderView?.date ? jobOrderView?.date : ""}
+                DATE :{" "}
+                {jobOrderView?.date ? jobOrderView?.date.slice(0, 10) : ""}
               </Text>
               <Text style={styles.jobOrderInfo}>
                 CSR REPORT NO :{" "}
@@ -105,10 +106,12 @@ export const MyDocument = ({ jobOrderView }) => (
                 ADDRESS : {jobOrderView?.address ? jobOrderView?.address : ""}
               </Text>
               <Text style={styles.jobOrderInfo}>
-                AREA : {jobOrderView?.area ? jobOrderView?.area : ""}
+                AREA :{" "}
+                {jobOrderView?.area ? jobOrderView?.area.toUpperCase() : ""}
               </Text>
               <Text style={styles.jobOrderInfo}>
-                JOB ORDER TYPE : {jobOrderView?.type ? jobOrderView?.type : ""}
+                JOB ORDER TYPE :{" "}
+                {jobOrderView?.type ? jobOrderView?.type.toUpperCase() : ""}
               </Text>
             </View>
             <View

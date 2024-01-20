@@ -43,7 +43,7 @@ export const JobOrderViewModal = ({ setJobOrderView, jobOrderView }) => {
         </Flex>
         {/* JOBORDER PROFILE */}
         <Box className="w-full h-[95%]">
-          <Box className="p-5">
+          <Box>
             <Heading
               as="h1"
               fontSize="24px"

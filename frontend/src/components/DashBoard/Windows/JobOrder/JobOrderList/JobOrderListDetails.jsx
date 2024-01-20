@@ -34,18 +34,13 @@ export const JobOrderListDetails = ({
           {jobOrder.csrreportnumber}
         </Text>
       </GridItem>
+      
       <GridItem colSpan={2}>
         <Text as="p" fontWeight="bold">
-          {jobOrder.type.toUpperCase()}
+          {jobOrder?.naturejoborder}
         </Text>
       </GridItem>
-      <GridItem colSpan={3}>
-        <Text as="p" fontWeight="bold">
-          {windowTab === "Clients" && jobOrder.clientname}
-          {windowTab === "Field" && jobOrder.address}
-        </Text>
-      </GridItem>
-      <GridItem colSpan={2}>
+      <GridItem colSpan={5}>
         <Text as="p" fontWeight="bold">
           {jobOrder.description}
         </Text>

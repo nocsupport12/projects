@@ -7,8 +7,7 @@ import { JobOrderList } from "./JobOrder/JobOrderList/JobOrderList";
 import { retrieveAllJobOrderDB } from "../../Api/JobOrderApi";
 import { UpdateJobOrderModal } from "./JobOrder/CrudJobOrder/UpdateJobOrderModal";
 // import { retrieveAllUserDB } from "../../Api/UserAccountsApi";
-export const JobOrder = ({ userDetails, personnel }) => {
-  const [allUsers, setAllUsers] = useState([]);
+export const JobOrder = ({ userDetails, personnel, allUsers, setAllUsers }) => {
   const [createJobOrder, setCreateJobOrder] = useState(false);
   const [jobOrderView, setJobOrderView] = useState(null);
   const [updateJobOrder, setUpdateJobOrder] = useState(null);
@@ -62,6 +61,7 @@ export const JobOrder = ({ userDetails, personnel }) => {
           updateJobOrder={updateJobOrder}
           allJobOrders={allJobOrders}
           setAllJobOrders={setAllJobOrders}
+          allUsers={allUsers}
         />
       )}
       {/* 

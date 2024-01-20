@@ -23,12 +23,13 @@ export const ImageUpload = (userDetails) => {
   const navigate = useNavigate();
   const toast = useToast();
   const globalUrl = process.env.REACT_APP_GLOBAL_URL;
+  const cloudeName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 
   const uploadFiles = async () => {
     setLoading(true)
     //
     try {
-      let cloudName = "dijhxviqe";
+      let cloudName = cloudeName;
       for (const image of images) {
         const data = new FormData();
         data.append("file", image);
@@ -58,6 +59,7 @@ export const ImageUpload = (userDetails) => {
   };
 
   const fetchUploadImage = async (imageSecureUrl) => {
+
     const body = {
       imageUrl: imageSecureUrl,
       category: "image",
@@ -108,6 +110,8 @@ export const ImageUpload = (userDetails) => {
       uploadFiles();
     }
   }
+
+  
   const handleFileChange = (e) => {
     const selectedFiles = e.target.files[0];
     setImages([selectedFiles]);

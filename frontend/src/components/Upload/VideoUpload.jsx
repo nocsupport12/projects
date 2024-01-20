@@ -25,11 +25,13 @@ export const VideoUpload = (userDetails) => {
 
 
   const globalUrl = process.env.REACT_APP_GLOBAL_URL;
+  const cloudeName = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
 
   const uploadFiles = async () => {
     setLoading(true);
     try {
-      let cloudName = "dijhxviqe";
+      
+      let cloudName = cloudeName;
       const uploadedVideoUrls = [];
 
       for (const video of videos) {
@@ -41,7 +43,7 @@ export const VideoUpload = (userDetails) => {
 
         const data = new FormData();
         data.append("file", video);
-        data.append("upload_preset", "barangay_ariman_video");
+        data.append("upload_preset", "uploadVideos");
         const api = `https://api.cloudinary.com/v1_1/${cloudName}/video/upload`;
 
         const res = await axios.post(api, data);

@@ -14,8 +14,8 @@ export const WindowDisplay = ({
   display,
   setDisplay,
   setIsLoaded,
-  allClients,
-  setAllClients,
+  allUsers,
+  setAllUsers,
   search,
 }) => {
   //   DISPLAY TOGGLE
@@ -36,14 +36,26 @@ export const WindowDisplay = ({
       case "sales":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<JobOrder personnel="sales" userDetails={userDetails} />);
+          setDisplay(
+            <JobOrder
+              personnel="sales"
+              userDetails={userDetails}
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+            />
+          );
         }, 1000);
         break;
       case "support":
         setDisplay(LoadingWindow);
         setTimeout(() => {
           setDisplay(
-            <JobOrder personnel="support" userDetails={userDetails} />
+            <JobOrder
+              personnel="support"
+              userDetails={userDetails}
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+            />
           );
         }, 1000);
         break;
@@ -57,28 +69,52 @@ export const WindowDisplay = ({
         setDisplay(LoadingWindow);
         setTimeout(() => {
           setDisplay(
-            <JobOrder personnel="dispatch" userDetails={userDetails} />
+            <JobOrder
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+              personnel="dispatch"
+              userDetails={userDetails}
+            />
           );
         }, 1000);
         break;
       case "noc":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<JobOrder personnel="noc" userDetails={userDetails} />);
+          setDisplay(
+            <JobOrder
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+              personnel="noc"
+              userDetails={userDetails}
+            />
+          );
         }, 1000);
         break;
       case "accounting":
         setDisplay(LoadingWindow);
         setTimeout(() => {
           setDisplay(
-            <JobOrder personnel="accounting" userDetails={userDetails} />
+            <JobOrder
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+              personnel="accounting"
+              userDetails={userDetails}
+            />
           );
         }, 1000);
         break;
       case "osp":
         setDisplay(LoadingWindow);
         setTimeout(() => {
-          setDisplay(<JobOrder personnel="osp" userDetails={userDetails} />);
+          setDisplay(
+            <JobOrder
+              allUsers={allUsers}
+              setAllUsers={setAllUsers}
+              personnel="osp"
+              userDetails={userDetails}
+            />
+          );
         }, 1000);
         break;
       case "completed":
