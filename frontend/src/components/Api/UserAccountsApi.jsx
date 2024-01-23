@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const authToken = process.env.REACT_APP_X_AUTH_TOKEN;
+
 const globalUrl = process.env.REACT_APP_GLOBAL_URL;
 
 export const createUserDB = async ({ body }) => {
@@ -18,6 +19,7 @@ export const createUserDB = async ({ body }) => {
   );
   return response;
 };
+
 export const retrieveUserDB = async ({ _id }) => {
   const header = {
     "Content-Type": "application/json",
@@ -31,8 +33,11 @@ export const retrieveUserDB = async ({ _id }) => {
     }
   );
   return response.data;
+  
 };
+
 export const retrieveAllUserDB = async () => {
+
   const header = {
     "Content-Type": "application/json",
     "x-auth-token": authToken,
@@ -43,6 +48,9 @@ export const retrieveAllUserDB = async () => {
   });
   return response.data;
 };
+
+
+
 export const updateUserDB = async ({ body, _id }) => {
   const header = {
     "Content-Type": "application/json",

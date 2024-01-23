@@ -216,7 +216,9 @@ export const Chats = () => {
         headers: header,
       });
       const data = await response.json();
-      if (data.length>1){
+     
+
+      if (data.length>0){
 
      
       setConversations(data);
@@ -383,8 +385,10 @@ export const Chats = () => {
 
   useEffect(() => {
     fetchChats();
-    fetchAllUsers(); // Fetch all users when the component mounts
+    fetchAllUsers();
+     // Fetch all users when the component mounts
   }, []);
+  
 
   useEffect(() => {
     // Ensure that the scroll behavior is reverted when the component unmounts

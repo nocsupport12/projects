@@ -1,7 +1,9 @@
 
 const userAccounts = require("../models/userAccounts");
 
+
 exports.getuserAccounts = async (req, res) => {
+
   const  id  = req.params.id;
 
   try {
@@ -11,15 +13,18 @@ exports.getuserAccounts = async (req, res) => {
     if (user) {
       res.status(200).json(user);
     } else {
-      res.status(404).json({ message: "Admin not found" });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
+
 };
 
 
+
 exports.getAlluserAccounts = async (req, res) => {
+
   try {
     const users = await userAccounts.find();
     res.status(200).json(users);
@@ -30,15 +35,14 @@ exports.getAlluserAccounts = async (req, res) => {
 
 
 
-
-
-
 exports.updateUserAccounts = async (req, res) => {
+
   const _id = req.params.id; 
   const  set  = req.body; 
 
   try {
     const user = await userAccounts.findById(_id);
+
     if (!user) {
       return res.status(404).json({ success: false, message: "User is not found" });
     }
@@ -63,6 +67,7 @@ exports.updateUserAccounts = async (req, res) => {
 
 
 exports.addUser = async (req, res) => {
+
   try {
    
     const userData = req.body;
@@ -88,6 +93,7 @@ exports.deleteUser = async (req, res) => {
 
   try {
     const user = await userAccounts.findById(id);
+
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
     }

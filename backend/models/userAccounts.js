@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserAccountsSchema = new Schema({
+
   fullname: {
     type: String ,
     required: true,
@@ -95,4 +96,6 @@ const UserAccountsSchema = new Schema({
     default: Date.now(),
   },
 });
+
+
 module.exports = mongoose.model("UserAccounts", UserAccountsSchema);

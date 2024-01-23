@@ -27,7 +27,9 @@ export const EmployeeListDetails = ({
     >
     <GridItem colSpan={2}>
       <Text as="p" _hover={{ textDecor: "underline", cursor: "pointer"}} onClick={() => setEmployeeProfile(user)}>
+      
         {user?.fullname ? user.fullname.length > 18 ? user.fullname.slice(0, 18) + "..." : user.fullname : "Null"}
+        
       </Text>
     </GridItem>
 

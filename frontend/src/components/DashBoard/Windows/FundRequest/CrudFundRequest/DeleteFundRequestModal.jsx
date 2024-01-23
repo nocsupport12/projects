@@ -52,7 +52,7 @@ export const DeleteFundRequestModal = ({
     }
   };
   const validate = () => {
-    console.log(userDetails);
+    
     if (userDetails.password === password) {
       toast({
         title: "Delete Successfully",

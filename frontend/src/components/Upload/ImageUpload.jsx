@@ -34,9 +34,11 @@ export const ImageUpload = (userDetails) => {
         const data = new FormData();
         data.append("file", image);
         data.append("upload_preset", "uploadNews");
+
         const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
         const res = await axios.post(api, data);
+
         const secure_url = res.data.secure_url;
         setImageUrls((prevUrls) => [...prevUrls, secure_url]);
         fetchUploadImage(secure_url);

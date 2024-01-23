@@ -85,7 +85,7 @@ export const JobOrderForm = ({
   }, []);
   useEffect(() => {
     if (updateJobOrder !== null) {
-      console.log(updateJobOrder);
+      
       setType("update");
       setNatureJobOrder(
         updateJobOrder?.naturejoborder ? updateJobOrder?.naturejoborder : ""
@@ -157,7 +157,7 @@ export const JobOrderForm = ({
         const userInCharge = allUsers.find((el) => el._id === user).fullname;
         setAgent(userInCharge);
       }
-      console.log(allUsers);
+      
     }
     if (allUsers?.length) {
       const userInCharge = allUsers.find((el) => el._id === user).fullname;
@@ -380,7 +380,7 @@ export const JobOrderForm = ({
           <Select
             onChange={(e) => {
               setNatureJobOrder(e.target.value);
-              console.log(e.target.value);
+              
             }}
             value={natureJobOrder}
             borderColor="blue.300"

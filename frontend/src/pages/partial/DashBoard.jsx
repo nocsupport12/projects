@@ -54,6 +54,7 @@ export const DashBoard = ({ userDetails }) => {
       const data = await retrieveAllUserDB();
 
       setAllUsers(data);
+
     } catch (error) {
       console.error("Error fetching all users:", error);
     } finally {

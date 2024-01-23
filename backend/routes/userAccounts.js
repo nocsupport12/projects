@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const authMiddleware = require("../middleware/authmiddleware");
 const { getuserAccounts, getAlluserAccounts, updateUserAccounts, addUser, deleteUser } = require('../controllers/userAccountsController'); 
 

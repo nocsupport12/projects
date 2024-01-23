@@ -2,14 +2,15 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+
+
 const cors = require("cors");
 require("dotenv").config();
-// const cloudinary = require('cloudinary').v2;
-const cloudinary = require("./cloudinary/cloudinary")
+
+
 
 
 const app = express();
-
 const port = process.env.PORT || 6001;
 
 // middleware
@@ -17,6 +18,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+app.listen(port, () => {
+  console.log(`Listening to ${port} port`);
+}); 
+// //////////////////////////
 
 
 // db connection
@@ -69,7 +75,3 @@ app.use("/dispatch", dispatchRoutes);
 
 
 
-app.listen(port, () => {
-  console.log(`Listening to ${port} port`);
-}); 
-// //////////////////////////

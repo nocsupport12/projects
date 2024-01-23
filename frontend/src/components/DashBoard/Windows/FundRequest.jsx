@@ -16,7 +16,7 @@ export const FundRequest = ({ userDetails }) => {
     try {
       const data = await retrieveAllFundRequestDB();
       setAllFundRequests(data);
-      console.log(data);
+      
     } catch (error) {
       console.error("Error fetching all users:", error);
     }

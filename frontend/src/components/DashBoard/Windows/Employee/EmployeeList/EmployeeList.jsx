@@ -42,7 +42,7 @@ export const EmployeeList = ({
             {allUsers?.map((user, index) => (
               <EmployeeListDetails
                 user={user}
-                key={index}
+                key={index} 
                 setCreateEmployee={setCreateEmployee}
                 setEmployeeProfile={setEmployeeProfile}
                 setUpdateEmployee={setUpdateEmployee}

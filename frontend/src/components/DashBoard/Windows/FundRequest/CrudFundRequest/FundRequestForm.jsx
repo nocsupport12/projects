@@ -62,7 +62,7 @@ export const FundRequestForm = ({
     } else {
       setType("create");
     }
-    console.log(updateFundRequest);
+    
   }, [updateFundRequest]);
 
   //   CREATE/UPDATE USERACCOUNTS DATABASE
